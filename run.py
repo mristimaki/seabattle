@@ -1,24 +1,5 @@
 from random import randint
 
-def board():
-
-    def player_board():
-        print("Player")
-        print("   0  1  2  3  4")
-        for x in range(5):
-            print(x, " . "*5)
-        print("\n")
-
-    def computer_board():
-        print("Computer")
-        print("   0  1  2  3  4")
-        for x in range(5):
-            print(x, " . "*5)
-        print("\n")
-
-    player_board()
-    computer_board()
-
 
 def start_game():
     """
@@ -42,6 +23,23 @@ def start_game():
     print("- New turn.")
     print("-+" * 20)
     user_name = input("Please enter your name before start: ")
+
+    def player_board():
+        print(f"{user_name}'s board")
+        print("   0  1  2  3  4")
+        for x in range(5):
+            print(x, " . "*5)
+        print("\n")
+
+    def computer_board():
+        print("Computer's board")
+        print("   0  1  2  3  4")
+        for x in range(5):
+            print(x, " . "*5)
+        print("\n")
+
+    player_board()
+    computer_board()
     
 
 def main():
@@ -49,6 +47,5 @@ def main():
     Calling the functions to run the game
     """
     start_game()
-    board()
 
 main()
