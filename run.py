@@ -28,7 +28,7 @@ def start_game():
     """
 
     board_size = 5
-    num_ships = 5
+    num_ships = 3
     print("-+" * 20)
     print("Welcome to Sea Battle! \n")
     print(f"Board size: {board_size}. Number of ships: {num_ships}")
@@ -44,5 +44,11 @@ def start_game():
     user_name = input("Please enter your name before start: ")
     
 
-start_game()
-board()
+def main():
+    """
+    Calling the functions to run the game
+    """
+    start_game()
+    board()
+
+main()
