@@ -1,5 +1,25 @@
 from random import randint
 
+def board():
+
+    def player_board():
+        print("Player")
+        print("   0  1  2  3  4")
+        for x in range(5):
+            print(x, " . "*5)
+        print("\n")
+
+    def computer_board():
+        print("Computer")
+        print("   0  1  2  3  4")
+        for x in range(5):
+            print(x, " . "*5)
+        print("\n")
+
+    player_board()
+    computer_board()
+
+
 def start_game():
     """
     Starting the game with introduction and rules.
@@ -25,3 +45,4 @@ def start_game():
     
 
 start_game()
+board()
