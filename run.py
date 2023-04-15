@@ -1,6 +1,24 @@
 from random import randint
 
 
+def get_ship_guess():
+    """
+    Getting ship guesses from user and validate the coordinates.
+    """
+    
+    guess_row = input("Please enter a row 0-4: ")
+    while guess_row not in '01234':
+        print("Please anter a valid row.")
+        guess_row = input("Please enter a row 0-4: ")
+
+    guess_col = input("Please enter a col 0-4: ")
+    while guess_col not in '01234':
+        print("Please enter a valid column.")
+        guess_col = input("Please enter a col 0-4: ")
+    return int(guess_row), int(guess_col)
+
+
+
 def start_game():
     """
     Starting the game with introduction and rules.
@@ -47,5 +65,6 @@ def main():
     Calling the functions to run the game
     """
     start_game()
+    get_ship_guess()
 
 main()
