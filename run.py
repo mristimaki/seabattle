@@ -19,6 +19,12 @@ def get_ship_guess():
 
 
 
+def set_ships():
+    """
+    Creating the ships from player and setting random for computer. 
+    """
+
+
 def start_game():
     """
     Starting the game with introduction and rules.
@@ -41,6 +47,7 @@ def start_game():
     print("- New turn.")
     print("-+" * 20)
     user_name = input("Please enter your name before start: ")
+        
 
     def player_board():
         print(f"{user_name}'s board")
