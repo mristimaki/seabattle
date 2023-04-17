@@ -1,6 +1,23 @@
 from random import randint
 
+# Ship location
+SHIPS = [[" "] * 5 for x in range(8)]
+# Hits and misses
+GUESS = [[" "] * 5 for x in range(5)]
 
+
+class Battleship:
+    """
+    Sets the size of the board, number of ships, user name and board type.
+    """
+
+    def __init__(self, board_size, num_ships, user_name, board_type):
+        self.board_size = board_size
+        self.num_ships = num_ships
+        self.user_name = user_name
+        self.board_type = board_type
+
+    
 def get_ship_guess():
     """
     Getting ship guesses from user and validate the coordinates.
@@ -16,13 +33,6 @@ def get_ship_guess():
         print("Please enter a valid column.")
         guess_col = input("Please enter a col 0-4: ")
     return int(guess_row), int(guess_col)
-
-
-
-def set_ships():
-    """
-    Creating the ships from player and setting random for computer. 
-    """
 
 
 def start_game():
@@ -46,9 +56,8 @@ def start_game():
     print("- Computer turn.")
     print("- New turn.")
     print("-+" * 20)
-    user_name = input("Please enter your name before start: ")
+    user_name = input("Please enter your name before start: \n")
         
-
     def player_board():
         print(f"{user_name}'s board")
         print("   0  1  2  3  4")
@@ -71,7 +80,10 @@ def main():
     """
     Calling the functions to run the game
     """
+
     start_game()
     get_ship_guess()
 
+
 main()
+
