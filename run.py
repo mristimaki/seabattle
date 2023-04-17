@@ -1,10 +1,5 @@
 from random import randint
 
-# Ship location
-SHIPS = [[" "] * 5 for x in range(8)]
-# Hits and misses
-GUESS = [[" "] * 5 for x in range(5)]
-
 
 class Battleship:
     """
@@ -16,6 +11,8 @@ class Battleship:
         self.num_ships = num_ships
         self.user_name = user_name
         self.board_type = board_type
+        self.ships = []
+        self.guess = []
 
     
 def get_ship_guess():
@@ -57,22 +54,22 @@ def start_game():
     print("- New turn.")
     print("-+" * 20)
     user_name = input("Please enter your name before start: \n")
-        
+
     def player_board():
+        
         print(f"{user_name}'s board")
         print("   0  1  2  3  4")
         for x in range(5):
             print(x, " . "*5)
-        print("\n")
 
     def computer_board():
         print("Computer's board")
         print("   0  1  2  3  4")
         for x in range(5):
             print(x, " . "*5)
-        print("\n")
 
     player_board()
+    print("\n")
     computer_board()
     
 
