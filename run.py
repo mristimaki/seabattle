@@ -48,13 +48,15 @@ def start_game():
     print("Welcome to Sea Battle! \n")
     print(f"Board size: {board_size}. Number of ships: {num_ships}")
     print("Goal: Sink all of your opponent's ships. \n")
+    print("Player ships = S")
+    print("HIT = H")
+    print("MISS = M \n")
+    
     print("Rules: ")
     print("- Player starts with guessing column and row.")
     print("- The column and row guess should be between 0-4")
     print("- Top left corner is row: 0, col: 0.")
-    print("- You will be informed if you got a 'Hit' or 'Miss'")
-    print("- Computer turn.")
-    print("- New turn.")
+    print("- First one to sink all the ships has won!")
     print("-+" * 20)
     user_name = input("Please enter your name before start: \n")
 
@@ -66,6 +68,7 @@ def start_game():
         print("   0  1  2  3  4")
         for x in range(5):
             print(x, " . "*5)
+            
 
     def computer_board():
         """
