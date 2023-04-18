@@ -1,5 +1,9 @@
 from random import randint
 
+# global variables
+HIT = []
+MISS = []
+
 
 class Battleship:
     """
@@ -13,23 +17,6 @@ class Battleship:
         self.board_type = board_type
         self.ships = []
         self.guess = []
-
-    
-def get_ship_guess():
-    """
-    Getting ship guesses from user and validate the coordinates.
-    """
-    
-    guess_row = input("Please enter a row 0-4: ")
-    while guess_row not in '01234':
-        print("Please anter a valid row.")
-        guess_row = input("Please enter a row 0-4: ")
-
-    guess_col = input("Please enter a col 0-4: ")
-    while guess_col not in '01234':
-        print("Please enter a valid column.")
-        guess_col = input("Please enter a col 0-4: ")
-    return int(guess_row), int(guess_col)
 
 
 def start_game():
@@ -56,21 +43,43 @@ def start_game():
     user_name = input("Please enter your name before start: \n")
 
     def player_board():
-        
+        """
+        Prints out the players board to terminal
+        """
         print(f"{user_name}'s board")
         print("   0  1  2  3  4")
         for x in range(5):
             print(x, " . "*5)
 
     def computer_board():
+        """
+        Prints out the game board to terminal
+        """
         print("Computer's board")
         print("   0  1  2  3  4")
         for x in range(5):
             print(x, " . "*5)
-
+            
     player_board()
     print("\n")
     computer_board()
+
+
+def get_ship_guess():
+    """
+    Getting ship guesses from user and validate the coordinates.
+    """
+    
+    guess_row = input("Please enter a row 0-4: ")
+    while guess_row not in ['0', '1', '2', '3', '4']:
+        print("Please anter a valid row.")
+        guess_row = input("Please enter a row 0-4: ")
+
+    guess_col = input("Please enter a col 0-4: ")
+    while guess_col not in ['0', '1', '2', '3', '4']:
+        print("Please enter a valid column.")
+        guess_col = input("Please enter a col 0-4: ")
+    return int(guess_row), int(guess_col)
     
 
 def main():
