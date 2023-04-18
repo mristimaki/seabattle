@@ -15,8 +15,24 @@ class Battleship:
         self.num_ships = num_ships
         self.user_name = user_name
         self.board_type = board_type
-        self.ships = []
+        self.ships = self.random_ships()  # Call the random_ships method to set ships
         self.guess = []
+
+    def random_ships(self):
+        """
+        Sets the ships to the board
+        """
+        ships = []
+        while len(ships) < self.num_ships:
+            ship_row = randint(0, self.board_size - 1)
+            ship_col = randint(0, self.board_size - 1)
+            ship_coord = (ship_row, ship_col)
+
+            # Make sure the ship is not already in the list
+            if ship_coord not in ships:
+                ships.append(ship_coord)
+
+        return ships
 
 
 def start_game():
@@ -59,7 +75,7 @@ def start_game():
         print("   0  1  2  3  4")
         for x in range(5):
             print(x, " . "*5)
-            
+
     player_board()
     print("\n")
     computer_board()
@@ -69,7 +85,7 @@ def get_ship_guess():
     """
     Getting ship guesses from user and validate the coordinates.
     """
-    
+
     guess_row = input("Please enter a row 0-4: ")
     while guess_row not in ['0', '1', '2', '3', '4']:
         print("Please anter a valid row.")
@@ -80,16 +96,19 @@ def get_ship_guess():
         print("Please enter a valid column.")
         guess_col = input("Please enter a col 0-4: ")
     return int(guess_row), int(guess_col)
-    
+
 
 def main():
     """
     Calling the functions to run the game
     """
 
+    board_size = 5
+    num_ships = 3
+    user_name = input("Please enter your name before start: \n")
+    game = Battleship(board_size, num_ships, user_name, "player")
+    print(game.ships)  # Print the ships' coordinates for testing purposes
     start_game()
     get_ship_guess()
 
-
 main()
-
