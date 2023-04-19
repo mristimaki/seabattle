@@ -1,13 +1,14 @@
 from random import randint
 
 # global variables
-HIT = []
-MISS = []
+HIT = [1]
+MISS = [2]
 
 
 class Battleship:
     """
     Sets the size of the board, number of ships, user name and board type.
+    Also calls the random_ships method to set ships.
     """
 
     def __init__(self, board_size, num_ships, user_name, board_type):
@@ -15,7 +16,7 @@ class Battleship:
         self.num_ships = num_ships
         self.user_name = user_name
         self.board_type = board_type
-        self.ships = self.random_ships()  # Call the random_ships method to set ships
+        self.ships = self.random_ships()
         self.guess = []
 
     def random_ships(self):
@@ -31,7 +32,7 @@ class Battleship:
             # Make sure the ship is not already in the list
             if ship_coord not in ships:
                 ships.append(ship_coord)
-
+            
         return ships
 
 
@@ -59,16 +60,26 @@ def start_game():
     print("- First one to sink all the ships has won!")
     print("-+" * 20)
     user_name = input("Please enter your name before start: \n")
-
+    
     def player_board():
         """
         Prints out the players board to terminal
         """
         print(f"{user_name}'s board")
         print("   0  1  2  3  4")
+        place = 0
         for x in range(5):
-            print(x, " . "*5)
-            
+            row = ""
+            for y in range(5):
+                symb = " . "
+                if place in HIT:
+                    symb = " H "
+                elif place in MISS:
+                    symb = " M "
+                row = row + symb
+                place = place + 1
+            print(x, row)
+
 
     def computer_board():
         """
@@ -76,12 +87,23 @@ def start_game():
         """
         print("Computer's board")
         print("   0  1  2  3  4")
+        place = 0
         for x in range(5):
-            print(x, " . "*5)
+            row = ""
+            for y in range(5):
+                symb = " . "
+                if place in HIT:
+                    symb = " H "
+                elif place in MISS:
+                    symb = " M "
+                row = row + symb
+                place = place + 1
+            print(x, row)
 
     player_board()
     print("\n")
     computer_board()
+    print("\n")
 
 
 def get_ship_guess():
@@ -101,6 +123,10 @@ def get_ship_guess():
     return int(guess_row), int(guess_col)
 
 
+def count_hits():
+   pass
+
+
 def main():
     """
     Calling the functions to run the game
@@ -110,7 +136,7 @@ def main():
     num_ships = 3
     user_name = input("Please enter your name before start: \n")
     game = Battleship(board_size, num_ships, user_name, "player")
-    print(game.ships)  # Print the ships' coordinates for testing purposes
+    print(game.ships)  # Print the ships coordinates for testing
     start_game()
     get_ship_guess()
 
