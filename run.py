@@ -1,13 +1,13 @@
 from random import randint
 
 # global variables
-HIT = [1]
-MISS = [2]
+HIT = []
+MISS = []
 
 
 class Battleship:
     """
-    Sets the size of the board, number of ships, user name and board type.
+    Sets the size of the board, number of ships, user name, and board type.
     Also calls the random_ships method to set ships.
     """
 
@@ -17,7 +17,8 @@ class Battleship:
         self.user_name = user_name
         self.board_type = board_type
         self.ships = self.random_ships()
-        self.guess = []
+        self.hits = []  # Initialize hits as a list
+        self.misses = []
 
     def random_ships(self):
         """
@@ -34,6 +35,36 @@ class Battleship:
                 ships.append(ship_coord)
             
         return ships
+
+    def print_board(self, show_ships=False):
+        """
+        Prints out the boards to terminal and checks if it's HIT or MISS.
+        """
+        print(f"{self.user_name}'s board")
+        print("   0  1  2  3  4")
+        for x in range(self.board_size):
+            row = ""
+            for y in range(self.board_size):
+                coord = (x, y)
+                symb = " . "
+                if coord in self.hits:
+                    symb = " H "
+                elif coord in self.misses:
+                    symb = " M "
+                elif show_ships and coord in self.ships:
+                    symb = " S "
+                row = row + symb
+            print(x, row)
+
+    def play_turn(self, row, col):
+        coord = (row, col)
+        if coord in self.ships:
+            self.hits.append(coord)
+            self.ships.remove(coord)
+            print("HIT!")
+        else:
+            self.misses.append(coord)
+            print("MISS!")
 
 
 def start_game():
@@ -60,50 +91,8 @@ def start_game():
     print("- First one to sink all the ships has won!")
     print("-+" * 20)
     user_name = input("Please enter your name before start: \n")
-    
-    def player_board():
-        """
-        Prints out the players board to terminal
-        """
-        print(f"{player}'s board")
-        print("   0  1  2  3  4")
-        place = 0
-        for x in range(5):
-            row = ""
-            for y in range(5):
-                symb = " . "
-                if place in HIT:
-                    symb = " H "
-                elif place in MISS:
-                    symb = " M "
-                row = row + symb
-                place = place + 1
-            print(x, row)
 
-
-    def computer_board():
-        """
-        Prints out the game board to terminal
-        """
-        print("Computer's board")
-        print("   0  1  2  3  4")
-        place = 0
-        for x in range(5):
-            row = ""
-            for y in range(5):
-                symb = " . "
-                if place in HIT:
-                    symb = " H "
-                elif place in MISS:
-                    symb = " M "
-                row = row + symb
-                place = place + 1
-            print(x, row)
-
-    player_board()
-    print("\n")
-    computer_board()
-    print("\n")
+    return user_name
 
 
 def get_ship_guess():
@@ -113,7 +102,7 @@ def get_ship_guess():
 
     guess_row = input("Please enter a row 0-4: \n")
     while guess_row not in ['0', '1', '2', '3', '4']:
-        print("Please anter a valid row.")
+        print("Please enter a valid row.")
         guess_row = input("Please enter a row 0-4: \n")
 
     guess_col = input("Please enter a col 0-4: \n")
@@ -123,10 +112,6 @@ def get_ship_guess():
     return int(guess_row), int(guess_col)
 
 
-def count_hits():
-   pass
-
-
 def main():
     """
     Calling the functions to run the game
@@ -134,10 +119,22 @@ def main():
 
     board_size = 5
     num_ships = 3
-    user_name = input("Please enter your name before start: \n")
-    game = Battleship(board_size, num_ships, user_name, "player")
-    print(game.ships)  # Print the ships coordinates for testing
-    start_game()
-    get_ship_guess()
+    user_name = start_game()
+
+    player_game = Battleship(board_size, num_ships, user_name, "player")
+    computer_game = Battleship(board_size, num_ships, "Computer", "computer")
+
+    print(player_game.ships)  # Print the player ships coordinates for testing
+    print(computer_game.ships)  # Print the computer ships coordinates for testing
+
+    while len(computer_game.ships) > 0:
+        player_game.print_board(show_ships=True)  # Show player's ships
+        computer_game.print_board()  # Hide computer's ships
+        row, col = get_ship_guess()
+        computer_game.play_turn(row, col)
+
+        if len(computer_game.ships) == 0:
+            print("You won!")
 
 main()
+
