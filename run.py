@@ -65,7 +65,7 @@ def start_game():
         """
         Prints out the players board to terminal
         """
-        print(f"{user_name}'s board")
+        print(f"{player}'s board")
         print("   0  1  2  3  4")
         place = 0
         for x in range(5):
@@ -111,15 +111,15 @@ def get_ship_guess():
     Getting ship guesses from user and validate the coordinates.
     """
 
-    guess_row = input("Please enter a row 0-4: ")
+    guess_row = input("Please enter a row 0-4: \n")
     while guess_row not in ['0', '1', '2', '3', '4']:
         print("Please anter a valid row.")
-        guess_row = input("Please enter a row 0-4: ")
+        guess_row = input("Please enter a row 0-4: \n")
 
-    guess_col = input("Please enter a col 0-4: ")
+    guess_col = input("Please enter a col 0-4: \n")
     while guess_col not in ['0', '1', '2', '3', '4']:
         print("Please enter a valid column.")
-        guess_col = input("Please enter a col 0-4: ")
+        guess_col = input("Please enter a col 0-4: \n")
     return int(guess_row), int(guess_col)
 
 
