@@ -16,7 +16,7 @@ class Battleship:
         self.num_ships = num_ships
         self.user_name = user_name
         self.ships = self.random_ships()
-        self.hits = []  # Initialize hits as a list
+        self.hits = []
         self.misses = []
 
     def random_ships(self):
@@ -35,7 +35,7 @@ class Battleship:
             
         return ships
 
-    def print_board(self, show_ships=False):
+    def print_board(self):
         """
         Prints out the boards to terminal and checks if it's HIT or MISS.
         """
@@ -54,10 +54,12 @@ class Battleship:
             print(x, row)
 
     def play_turn(self, row, col):
+        """
+        Prints hit or miss to board
+        """
         coord = (row, col)
         if coord in self.ships:
             self.hits.append(coord)
-            self.ships.remove(coord)
             print("HIT!")
         else:
             self.misses.append(coord)
@@ -96,7 +98,6 @@ def get_ship_guess():
     """
     Getting ship guesses from user and validate the coordinates.
     """
-
     guess_row = input("Please enter a row 0-4: \n")
     while guess_row not in ['0', '1', '2', '3', '4']:
         print("Please enter a valid row.")
@@ -121,19 +122,24 @@ def main():
     player_game = Battleship(board_size, num_ships, user_name)
 
     print(player_game.ships)  # Print the player ships coordinates for testing
-    turns = 5
+    
+    turns = 0
+    
     while len(player_game.ships) > 0:
         player_game.print_board()
         row, col = get_ship_guess()
         player_game.play_turn(row, col)
-        turns -= 1
+        turns += 1
+        print(len(player_game.ships))
+        print(turns)
 
         if len(player_game.ships) == 0:
-            print("Congratulations, you sank all of the ships!")
-        elif turns == 0:
-            print("Game over!")
+            print(len(player_game.ships))
+            print("You won!")
             break
-
+        if turns > 10:
+            print("Game over")
+            break
 
 main()
 
