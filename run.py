@@ -54,9 +54,6 @@ class Battleship:
             print(x, row)
 
     def play_turn(self, row, col):
-        """
-        Gets the guesses and prints out if it's hit or miss
-        """
         coord = (row, col)
         if coord in self.ships:
             self.hits.append(coord)
@@ -88,7 +85,7 @@ def start_game():
     print("- Player starts with guessing column and row.")
     print("- The column and row guess should be between 0-4")
     print("- Top left corner is row: 0, col: 0.")
-    print("- First one to sink all the ships has won!")
+    print("- Game ends when you have hit all the ships!")
     print("-+" * 20)
     user_name = input("Please enter your name before start: \n")
 
@@ -124,14 +121,19 @@ def main():
     player_game = Battleship(board_size, num_ships, user_name)
 
     print(player_game.ships)  # Print the player ships coordinates for testing
-
+    turns = 5
     while len(player_game.ships) > 0:
         player_game.print_board()
         row, col = get_ship_guess()
         player_game.play_turn(row, col)
+        turns -= 1
 
         if len(player_game.ships) == 0:
             print("Congratulations, you sank all of the ships!")
+        elif turns == 0:
+            print("Game over!")
+            break
+
 
 main()
 
