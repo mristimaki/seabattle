@@ -33,13 +33,13 @@ class Battleship:
             # Make sure the ship is not already in the list
             if ship_coord not in ships:
                 ships.append(ship_coord)
-            
+
         return ships
 
     def print_board(self):
         """
         Prints out the boards to terminal and checks if it's Hit or Miss.
-        Prints out the Hit or Miss to the board for the player to see. 
+        Prints out the Hit or Miss to the board for the player to see.
         """
         print(f" {self.user_name}'s board \n")
         print("   0  1  2  3  4")
@@ -58,7 +58,7 @@ class Battleship:
     def play_turn(self, row, col):
         """
         Checks to see if the coordinates has been guessed.
-        Also prints out if its a hit or miss.
+        Also prints out if its a hit or miss to board.
         """
         coord = (row, col)
         if coord in self.hits or coord in self.misses:
@@ -91,7 +91,7 @@ def start_game():
     print("Player ships = S")
     print("HIT = H")
     print("MISS = M \n")
-    
+
     print("Rules: ")
     print("- Player starts with guessing column and row.")
     print("- The column and row guess should be between 0-4")
@@ -122,7 +122,7 @@ def get_ship_guess():
 def main():
     """
     Calling the functions to run the game.
-    Printing a new board to the game as long as all 
+    Printing a new board to the game as long as all
     the ships has not been hit, or total turns are over.
     """
 
@@ -148,5 +148,6 @@ def main():
         elif turns == total_turns:
             print(f"Game over! You've reached the maximum turns ({total_turns}).")
             break
+
 
 main()
