@@ -88,7 +88,6 @@ def start_game():
     print("Welcome to Sea Battle! \n")
     print(f"Board size: {board_size}. Number of ships: {num_ships}")
     print("Goal: Sink all of your opponent's ships. \n")
-    print("Player ships = S")
     print("HIT = H")
     print("MISS = M \n")
 
@@ -96,6 +95,7 @@ def start_game():
     print("- Player starts with guessing column and row.")
     print("- The column and row guess should be between 0-4")
     print("- Top left corner is row: 0, col: 0.")
+    print("- You will have 10 turns before game is over.")
     print("- Game ends when you have hit all the ships!")
     print("-+" * 20)
     user_name = input("Please enter your name before start: \n")
@@ -132,8 +132,6 @@ def main():
 
     player_game = Battleship(board_size, num_ships, user_name)
 
-    print(player_game.ships)  # Print the player ships coordinates for testing
-
     turns = 0
     total_turns = 10
 
@@ -146,7 +144,7 @@ def main():
         if len(player_game.ships) == 0:
             print("Congratulations! You have sank all of the ships!")
         elif turns == total_turns:
-            print(f"Game over! You've reached the maximum turns ({total_turns}).")
+            print("Game over! You've reached the maximum turns.")
             break
 
 
