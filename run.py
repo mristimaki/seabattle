@@ -60,17 +60,18 @@ class Battleship:
         Checks to see if the coordinates has been guessed.
         Also prints out if its a hit or miss to board.
         """
-
+        
         coord = (row, col)
         if coord in self.hits or coord in self.misses:
             print("You've already guessed that coordinate!")
             return False
+
         if coord in self.ships:
             self.hits.append(coord)
             self.ships.remove(coord)  # Remove the ship from the list
             print("HIT!")
             return True
-            
+                    
         else:
             self.misses.append(coord)
             print("MISS!")
@@ -103,24 +104,6 @@ def start_game():
     print("-+" * 20)
     user_name = input("Please enter your name before start: \n")
 
-    player_game = Battleship(board_size, num_ships, user_name)
-
-    print(player_game.ships)  # Print the player ships coordinates for testing
-
-    turns = 10
-
-    while turns > 0:
-        player_game.print_board()
-        row, col = get_ship_guess()
-        if player_game.play_turn(row, col):
-            turns -= 1
-            print(f"you have {turns} turns left")
-
-        if len(player_game.ships) == 0:
-            print("Congratulations! You have sank all of the ships!")
-            break
-    print("Game over! You're out of turns.")
-
     return user_name
 
 
@@ -147,7 +130,30 @@ def main():
     the ships has not been hit, or total turns are over.
     """
 
-    start_game()
+    board_size = 5
+    num_ships = 3
+    user_name = start_game()
 
+    player_game = Battleship(board_size, num_ships, user_name)
+
+    print(player_game.ships)  # Print the player ships coordinates for testing
+
+    turns = 0
+    total_turns = 10
+
+    while turns < total_turns and len(player_game.ships) > 0:
+        player_game.print_board()
+        row, col = get_ship_guess()
+        if player_game.play_turn(row, col):
+            total_turns -= 1
+            turns += 1
+            print(f"You have {total_turns} turns left.")
+
+        if len(player_game.ships) == 0:
+            print("Congratulations! You have sank all of the ships!")
+        elif turns == total_turns:
+            print("Game over! You've reached the maximum turns.")
+            break
+    
 
 main()
