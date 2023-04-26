@@ -24,7 +24,7 @@ The Hits are marked with a `H` to the board and the Misses are marked with a `M`
 
 <img width="742" alt="seabattle_intro" src="https://user-images.githubusercontent.com/121927123/234624904-24818f05-9779-45e1-b13c-2ee5538d4879.png">
 
-- Random bord generation
+- Random board generation
   - The ships are randomly placed on the board
 - One player game
 - Accepts user input
@@ -33,7 +33,7 @@ The Hits are marked with a `H` to the board and the Misses are marked with a `M`
 
 - Input validation
   - You cannot enter coordinates that has already been guessed
-  - You cannot enter coordinates outside of the size of the grid
+  - You cannot enter coordinates outside of the size of the board
   
  <img width="745" alt="game_over" src="https://user-images.githubusercontent.com/121927123/234625097-f3511f2b-997d-4344-8d7c-4666032cbafe.png">
 
