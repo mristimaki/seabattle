@@ -38,7 +38,7 @@ class Battleship:
 
     def print_board(self):
         """
-        Prints out the boards to terminal and checks if it's Hit or Miss.
+        Prints out the board to terminal and checks if it's Hit or Miss.
         Prints out the Hit or Miss to the board for the player to see.
         """
         print(f" {self.user_name}'s board \n")
@@ -81,7 +81,7 @@ class Battleship:
 def start_game():
     """
     Starting the game with introduction and rules.
-    Setting the size of game board and the number of ships.
+    Sets the size of game board and the number of ships.
     Lets user put in name before start.
     Printing out the board when game starts.
     """
@@ -96,8 +96,8 @@ def start_game():
     print("MISS = M \n")
 
     print("Rules: ")
-    print("- Player starts with guessing column and row.")
-    print("- The column and row guess should be between 0-4")
+    print("- Player starts with guessing row and column.")
+    print("- The row and column guess should be between 0-4")
     print("- Top left corner is row: 0, col: 0.")
     print("- You will have 10 turns before game is over.")
     print("- Game ends when you have hit all the ships!")
@@ -106,27 +106,22 @@ def start_game():
 
     player_game = Battleship(board_size, num_ships, user_name)
 
-    print(player_game.ships)  # Print the player ships coordinates for testing
-
     turns = 0
     total_turns = 10
 
     while turns < total_turns and len(player_game.ships) > 0:
         player_game.print_board()
         row, col = get_ship_guess()
-        new_guess = player_game.play_turn(row, col)
-
-        if new_guess:
-            turns += 1
+        player_game.play_turn(row, col)
 
         if len(player_game.ships) == 0:
             print("Congratulations! You have sank all of the ships!")
         elif turns == total_turns:
-            print("Game over! You've reached the maximum turns.")
             break
         turns += 1
         print(f"Turn no. {turns}")
 
+    print("Game over!")
     return user_name
 
 
