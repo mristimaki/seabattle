@@ -7,11 +7,16 @@ User is playing the game alone and are to hit all the ships that has randomly be
 [Here you can find the live version of the project.](https://seabattle-mristimaki.herokuapp.com/)
 <br>
 
+<img width="959" alt="responsive" src="https://user-images.githubusercontent.com/121927123/234626297-61486394-4688-4ad7-98e4-e7e456f8b769.png">
+
+
 ## How to play Sea Battle!
 
 Sea Battle is based on a simple battleship game, in this version the player enters their name and the computer will generate a board that has set three ships randomly to the game. 
 <br>
 The player will then have total of 10 guesses to hit all the ships before game is over. The player gets to choose a row and a column for each turn to guess.
+<br>
+The Hits are marked with a `H` to the board and the Misses are marked with a `M` to the board.
 <br>
 
 ## Features
@@ -48,14 +53,14 @@ I have manually tested this my project by:
 
 ### Bugs
 **Solved Bugs**
-- My while loop to check if the player has reached the total amount of turns was not working correctly, I fixed it by putting the `turns += 1´ at the end of the while loop instead. 
+- My while loop to check if the player has reached the total amount of turns was not working correctly, I fixed it by putting the `turns += 1` at the end of the while loop instead. 
 
 ### Remaining Bugs
 - No remaining bugs
 
 ### Validator testing
 - PEP8
-  - No errors returned from https://pep8ci.herokuapp.com/
+  - No errors returned from [PEP8 Linter](https://pep8ci.herokuapp.com/)
  
  ## Deployment
  This project was deployed using Code Institute's mock terminal for Heroku.
@@ -64,7 +69,7 @@ I have manually tested this my project by:
  **Steps for deployment are as follows:**
  - Fork or clone this repositry
  - Create a new Heroku app
- - Set the buildpacks to `Python´ and `NodeJS´ in that particular order
+ - Set the buildpacks to `Python` and `NodeJS` in that particular order
  - Link the Heroku app to the repository
  - Click on **Deploy**
  
